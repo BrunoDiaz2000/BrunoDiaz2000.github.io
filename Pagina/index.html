@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Tienda de componentes PC</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="productos.js"></script>
+</head>
+<body>
+    
+<!--Contenedor header -->
+<div class="contenedor-header">
+    <header>
+        <div class="logo">
+            <a href="#">
+                <span>ITIZ - UNCHAINED</span>
+                
+            </a>
+        </div>
+        <nav id="nav" class="navegador">
+            <ul class="menu">
+                <li><a href="#Inicio" onclick="seleccionar()" class="texto">INICIO</a></li>
+                <li>
+                    <a href="#Productos" onclick="mostrarSubMenu('productos')" class="texto">PRODUCTOS</a>
+                    <ul id="productosSubMenu" class="submenu">
+                        <li><a href="Productos mas vendido.html">Lo más vendido</a>
+                        <a href="Productos con descuento.html">Con descuento</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#Cuenta" onclick="mostrarSubMenu('cuenta')" class="texto">CUENTA</a>
+                    <ul id="cuentaSubMenu" class="submenu">
+                        <li><a href="iniciodessesion.html" onclick="seleccionar()" class="texto">Inicio de sesión</a>
+                        <a href="registro.html" onclick="seleccionar()" class="texto">Registrarse</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Contacto" onclick="seleccionar()" class="texto">CONTACTO</a>
+                <ul id="cuentaSubMenu" class="submenu">
+                    <li><a href="formularioC.html" onclick="seleccionar()" class="texto">Formulario</a></li>
+                </ul>
+            </li>
+            </ul>
+        </nav>
+        <!-- Icono de hamburguesa -->
+        <div class="nav-responsive" onclick="mostrarOcultarMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <!-- Icono de hamburguesa -->
+    </header>
+</div>
+<!--Contenedor header -->
+
+<script>
+    // Función para mostrar u ocultar el menú en pantallas pequeñas
+    function mostrarOcultarMenu() {
+        var menu = document.querySelector('.contenedor-header .navegador .menu');
+        menu.classList.toggle('active');
+    }
+
+    // Función para ocultar el menú en pantallas pequeñas después de hacer clic en un enlace
+    function seleccionar() {
+        var menu = document.querySelector('.contenedor-header .navegador .menu');
+        menu.classList.remove('active');
+    }
+
+    // Función para mostrar u ocultar el submenú
+    function mostrarSubMenu(menuId) {
+        var subMenu = document.getElementById(menuId + 'SubMenu');
+        if (subMenu) {
+            subMenu.classList.toggle('active');
+        }
+    }
+</script>
+
+<script>
+    // Función para agregar un producto al carrito
+function agregarAlCarrito(precio,itemId) {
+// Crear un nuevo elemento de lista
+var nuevoItem = document.createElement("li");
+nuevoItem.textContent = "Productos - $" + precio;
+
+nuevoItem.setAttribute("id", itemId);
+
+// Agregar el nuevo elemento al carrito
+document.getElementById("cart-items").appendChild(nuevoItem);
+
+// Actualizar el total
+var totalActual = parseFloat(document.getElementById("cart-total").textContent);
+totalActual += precio;
+document.getElementById("cart-total").textContent = totalActual.toFixed(2);
+
+var botonEliminar = document.createElement("button");
+botonEliminar.textContent = "Eliminar";
+botonEliminar.onclick = function() {
+    eliminarDelCarrito(itemId, precio);
+};
+nuevoItem.appendChild(botonEliminar);
+}
+function eliminarDelCarrito(itemId, precio) {
+// Eliminar el elemento del carrito
+var elementoEliminar = document.getElementById(itemId);
+elementoEliminar.parentNode.removeChild(elementoEliminar);
+
+// Actualizar el total
+var totalActual = parseFloat(document.getElementById("cart-total").textContent);
+totalActual -= precio;
+document.getElementById("cart-total").textContent = totalActual.toFixed(2);
+}
+</script>
+
+ <!-- SECCION INICIO -->
+ <section id="Inicio" class="Inicio">
+    <div class="conteiner">
+        <h2 class="titulo">Bienvenidos a ITIZ - UNCHAINED</h2> <br> 
+        <p>Tu destino definitivo para todas tus necesidades en partes de PC. En Geométricos PC, nos dedicamos a
+        ofrecerte una amplia gama de componentes de alta calidad para potenciar y mejorar tu experiencia informática. Somos un 
+        equipo apasionado de entusiastas de la tecnología comprometidos a proporcionar soluciones informáticas excepcionales a 
+        nuestros clientes. Con años de experiencia en la industria, hemos establecido relaciones sólidas con los principales fabricantes
+         para garantizar que solo ofrecemos productos de la más alta calidad.</p>
+        </div>
+    </section>
+    
+    <!--FOOTER-->
+    <footer>
+        <div class="redes">
+            <a href="https://es-la.facebook.com/login/"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://mx.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a>
+            <div class="Ad">
+                <p>Created by UNCHAINED 2024 | Para cualquier problema, contáctanos al teléfono: 5634579955</p> 
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
